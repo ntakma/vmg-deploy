@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:15
+    container_name: postgresdb
+    ports:
+      - '5432:5432'
+    volumes:
+      - /opt/data/postgresql_data:/bitnami/postgresql:rw
+    environment:
+      - 'POSTGRESQL_PASSWORD=3wRAMjhIdO3FRTgx5Xszv6WaI'
+    restart: always
+
+  mongodb:
+    image: docker.io/bitnami/mongodb:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/data/mongodb_data:/bitnami/mongodb:rw
+    environment:
+      - 'MONGODB_ROOT_PASSWORD=2GgUlIQFbxoSxwG29ATN5VXBw'
+      - 'MONGODB_DATABASE=my_database'
+    restart: always
+  redis: 
+    image: docker.io/redis/redis-stack:7.2.3-bookworm
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /opt/data/redis_data:/bitnami/redis/data:rw
+    environment:
+      - 'REDIS_PASSWORD=oaghiquaina6foopiqu5otooW'
+    restart: always
+
+networks:
+  default:
+    driver: bridge
